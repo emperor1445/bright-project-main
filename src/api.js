@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Set your backend base URL
 const API = axios.create({
-  baseURL: "https://bright-backend-k6it.onrender.com/api",
+ baseURL: "https://bright-backend-k6it.onrender.com/api"
 });
 
 // Automatically attach token to requests if it exists
@@ -21,3 +21,9 @@ export const loginUser = (data) => API.post("/auth/login", data);
 // Transaction endpoints
 export const addTransaction = (data) => API.post("/transactions", data);
 export const getTransactions = () => API.get("/transactions");
+
+
+// // Set your backend base URL
+// const API = axios.create({
+//   baseURL: "https://bright-backend-k6it.onrender.com/api",
+// });
