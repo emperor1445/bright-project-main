@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Set your backend base URL
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://bright-backend-k6it.onrender.com",
 });
 
 // Automatically attach token to requests if it exists
