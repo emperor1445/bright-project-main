@@ -1,4 +1,4 @@
-// Chakra imports
+
 import {
   Box,
   Button,
