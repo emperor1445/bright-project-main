@@ -1,6 +1,5 @@
-/*eslint-disable*/
+
 import { HamburgerIcon } from "@chakra-ui/icons";
-// chakra imports
 import {
     Box,
     Button,
@@ -24,18 +23,14 @@ import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 function SidebarResponsive(props) {
-    // to check for active links and opened collapses
     let location = useLocation();
-    // this is for the rest of the collapses
     const [state, setState] = React.useState({});
     const mainPanel = React.useRef();
-    // verifies if routeName is the one active (in browser input)
     const activeRoute = (routeName) => {
       return location.pathname === routeName ? "active" : "";
     };
   
     const createLinks = (routes) => {
-      // Chakra Color Mode
       const activeBg = useColorModeValue("white", "gray.700");
       const inactiveBg = useColorModeValue("white", "gray.700");
       const activeColor = useColorModeValue("gray.700", "white");
@@ -182,8 +177,7 @@ function SidebarResponsive(props) {
     const { logoText, routes, ...rest } = props;
   
     var links = <>{createLinks(routes)}</>;
-    //  BRAND
-    //  Chakra Color Mode
+
     let hamburgerColor = useColorModeValue("gray.500", "gray.200");
     if (props.secondary === true) {
       hamburgerColor = "white";
@@ -209,11 +203,8 @@ function SidebarResponsive(props) {
         <Separator></Separator>
       </Box>
     );
-  
-    // SIDEBAR
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
-    // Color variables
     return (
       <Flex
         display={{ sm: "flex", xl: "none" }}

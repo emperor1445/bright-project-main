@@ -19,9 +19,7 @@ import {
 import avatar13 from "assets/img/avatars/avatar13.jpg";
 import avatar11 from "assets/img/avatars/avatar11.jpg";
 import avatar12 from "assets/img/avatars/avatar12.jpg";
-// Custom Icons
 import { ProfileIcon, SettingsIcon } from "components/Icons/Icons";
-// Custom Components
 import { ItemContent } from "components/Menu/ItemContent";
 import SidebarResponsive from "components/Sidebar/SidebarResponsive";
 import PropTypes from "prop-types";
@@ -32,7 +30,6 @@ import routes from "routes.js";
 export default function HeaderLinks(props) {
   const { variant, children, fixed, secondary, onOpen, ...rest } = props;
 
-  // Chakra Color Mode
   let mainTeal = useColorModeValue("teal.300", "teal.300");
   let inputBg = useColorModeValue("white", "gray.800");
   let mainText = useColorModeValue("gray.700", "gray.200");

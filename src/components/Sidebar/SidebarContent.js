@@ -1,5 +1,4 @@
-/*eslint-disable*/
-// chakra imports
+
 import {
     Box,
     Button, Flex,
@@ -15,22 +14,14 @@ import { SidebarHelp } from "components/Sidebar/SidebarHelp";
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
-// this function creates the links and collapses that appear in the sidebar (left menu)
-
-
 const SidebarContent = ({ logoText, routes }) => {
 
-    // to check for active links and opened collapses
   let location = useLocation();
-  // this is for the rest of the collapses
   const [state, setState] = React.useState({});
-
-  // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
     return location.pathname === routeName ? "active" : "";
   };
   const createLinks = (routes) => {
-    // Chakra Color Mode
     const activeBg = useColorModeValue("white", "gray.700");
     const inactiveBg = useColorModeValue("white", "gray.700");
     const activeColor = useColorModeValue("gray.700", "white");

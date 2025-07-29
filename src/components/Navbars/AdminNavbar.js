@@ -1,4 +1,3 @@
-// Chakra Imports
 import {
   Box,
   Breadcrumb,
@@ -24,7 +23,6 @@ export default function AdminNavbar(props) {
     ...rest
   } = props;
 
-  // Here are all the props that may change depending on navbar's type or state.(secondary, variant, scrolled)
   let mainText = useColorModeValue("gray.700", "gray.200");
   let secondaryText = useColorModeValue("gray.400", "gray.200");
   let navbarPosition = "absolute";
@@ -126,7 +124,6 @@ export default function AdminNavbar(props) {
               </BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
-          {/* Here we create navbar brand, based on route name */}
           <Link
             color={mainText}
             href="#"

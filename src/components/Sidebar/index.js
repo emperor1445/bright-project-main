@@ -1,22 +1,17 @@
-/*eslint-disable*/
-// chakra imports
+
 import {
   Box, useColorModeValue
 } from "@chakra-ui/react";
 import React from "react";
 import SidebarContent from "./SidebarContent";
 
-// FUNCTIONS
-
 function Sidebar(props) {
-  // to check for active links and opened collapses
+ 
   const mainPanel = React.useRef();
   let variantChange = "0.2s linear";
 
   const { logoText, routes, sidebarVariant } = props;
 
-  //  BRAND
-  //  Chakra Color Mode
   let sidebarBg = "none";
   let sidebarRadius = "0px";
   let sidebarMargins = "0px";
@@ -26,7 +21,7 @@ function Sidebar(props) {
     sidebarMargins = "16px 0px 16px 16px";
   }
 
-  // SIDEBAR
+
   return (
     <Box ref={mainPanel}>
       <Box display={{ sm: "none", xl: "block" }} position="fixed">
@@ -48,7 +43,7 @@ function Sidebar(props) {
           borderRadius={sidebarRadius}
         >
           <SidebarContent routes={routes}
-        logoText={"My Dashboard"}
+        logoText={"Dashboard"}
         display="none"
         sidebarVariant={sidebarVariant}
         />

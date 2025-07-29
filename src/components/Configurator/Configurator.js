@@ -1,4 +1,3 @@
-// Chakra Imports
 import {
   Box,
   Button,
@@ -26,7 +25,6 @@ export default function Configurator(props) {
   const [switched, setSwitched] = useState(props.isChecked);
 
   const { colorMode, toggleColorMode } = useColorMode();
-  // Chakra Color Mode
   let fixedDisplay = "flex";
   if (props.secondary) {
     fixedDisplay = "none";
@@ -54,11 +52,9 @@ export default function Configurator(props) {
           <DrawerHeader pt="24px" px="24px">
             <DrawerCloseButton />
             <Text fontSize="xl" fontWeight="bold" mt="16px">
-              My Dashboard
+              Dashboard
             </Text>
-            <Text fontSize="md" mb="16px">
-              See your dashboard options.
-            </Text>
+
             <Separator />
           </DrawerHeader>
           <DrawerBody w="340px" ps="24px" pe="40px">
@@ -68,7 +64,6 @@ export default function Configurator(props) {
                   Sidenav Type
                 </Text>
                 <Text fontSize="sm" mb="16px">
-                  Choose between 2 different sidenav types.
                 </Text>
                 <Flex>
                   <Button

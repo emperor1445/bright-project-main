@@ -112,73 +112,7 @@ const handleSignUp = async (e) => {
             mb='22px'>
             Register With
           </Text>
-          <HStack spacing='15px' justify='center' mb='22px'>
-            <Flex
-              justify='center'
-              align='center'
-              w='75px'
-              h='75px'
-              borderRadius='15px'
-              border='1px solid lightgray'
-              cursor='pointer'
-              transition='all .25s ease'
-              _hover={{ filter: "brightness(120%)", bg: bgIcons }}>
-              <Link href='#'>
-                <Icon
-                  as={FaFacebook}
-                  w='30px'
-                  h='30px'
-                  _hover={{ filter: "brightness(120%)" }}
-                />
-              </Link>
-            </Flex>
-            <Flex
-              justify='center'
-              align='center'
-              w='75px'
-              h='75px'
-              borderRadius='15px'
-              border='1px solid lightgray'
-              cursor='pointer'
-              transition='all .25s ease'
-              _hover={{ filter: "brightness(120%)", bg: bgIcons }}>
-              <Link href='#'>
-                <Icon
-                  as={FaApple}
-                  w='30px'
-                  h='30px'
-                  _hover={{ filter: "brightness(120%)" }}
-                />
-              </Link>
-            </Flex>
-            <Flex
-              justify='center'
-              align='center'
-              w='75px'
-              h='75px'
-              borderRadius='15px'
-              border='1px solid lightgray'
-              cursor='pointer'
-              transition='all .25s ease'
-              _hover={{ filter: "brightness(120%)", bg: bgIcons }}>
-              <Link href='#'>
-                <Icon
-                  as={FaGoogle}
-                  w='30px'
-                  h='30px'
-                  _hover={{ filter: "brightness(120%)" }}
-                />
-              </Link>
-            </Flex>
-          </HStack>
-          <Text
-            fontSize='lg'
-            color='gray.400'
-            fontWeight='bold'
-            textAlign='center'
-            mb='22px'>
-            or
-          </Text>
+
           <FormControl>
             <FormLabel ms='4px' fontSize='sm' fontWeight='normal'>
               Name
@@ -247,24 +181,24 @@ const handleSignUp = async (e) => {
               SIGN UP
             </Button>
           </FormControl>
-          <Flex
-            flexDirection='column'
-            justifyContent='center'
-            alignItems='center'
-            maxW='100%'
-            mt='0px'>
-            <Text color={textColor} fontWeight='medium'>
-              Already have an account?
-              <Link
-                color={titleColor}
-                as='span'
-                ms='5px'
-                href='#'
-                fontWeight='bold'>
-                Sign In
-              </Link>
-            </Text>
-          </Flex>
+<Flex
+  flexDirection='column'
+  justifyContent='center'
+  alignItems='center'
+  maxW='100%'
+  mt='0px'>
+  <Text color={textColor} fontWeight='medium'>
+    Already have an account?
+    <Link
+      color={titleColor}
+      as='a' // change 'span' to 'a' to make it a proper link
+      ms='5px'
+      href='/auth/signin' // your sign-in route
+      fontWeight='bold'>
+      Sign In
+    </Link>
+  </Text>
+</Flex>
         </Flex>
       </Flex>
     </Flex>

@@ -1,8 +1,7 @@
-// Chakra imports
+
 import { ChakraProvider, Portal, useDisclosure } from '@chakra-ui/react';
 import Configurator from 'components/Configurator/Configurator';
 import Footer from 'components/Footer/Footer.js';
-// Layout components
 import AdminNavbar from 'components/Navbars/AdminNavbar.js';
 import Sidebar from 'components/Sidebar';
 import React, { useState } from 'react';
@@ -12,10 +11,9 @@ import ProtectedRoute from 'ProtectedRoute.js';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-// Custom Chakra theme
+
 import theme from 'theme/theme.js';
 import FixedPlugin from '../components/FixedPlugin/FixedPlugin';
-// Custom components
 import MainPanel from '../components/Layout/MainPanel';
 import PanelContainer from '../components/Layout/PanelContainer';
 import PanelContent from '../components/Layout/PanelContent';
@@ -95,7 +93,6 @@ export default function Dashboard(props) {
 	};
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	document.documentElement.dir = 'ltr';
-	// Chakra Color Mode
 	return (
 		<ChakraProvider theme={theme} resetCss={false}>
 			<Sidebar
@@ -113,7 +110,7 @@ export default function Dashboard(props) {
 				<Portal>
 					<AdminNavbar
 						onOpen={onOpen}
-						logoText={'MY DASHBOARD'}
+						logoText={'DASHBOARD'}
 						brandText={getActiveRoute(routes)}
 						secondary={getActiveNavbar(routes)}
 						fixed={fixed}
