@@ -13,7 +13,6 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 // Assets
-// import signInImage from "assets/img/BgSignUp.png";
 
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";

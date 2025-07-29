@@ -15,7 +15,6 @@ import {
 } from "@chakra-ui/react";
 // Assets
 import BgSignUp from "assets/img/BgSignUp.png";
-import { FaApple, FaFacebook, FaGoogle } from "react-icons/fa";
 
 
 import React, { useState } from "react";
