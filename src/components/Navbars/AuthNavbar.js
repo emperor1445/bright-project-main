@@ -1,4 +1,4 @@
-
+// Chakra imports
 import {
   Box,
   Button,
@@ -88,7 +88,6 @@ export default function AuthNavbar(props) {
   var linksAuth = (
     <HStack display={{ sm: "none", lg: "flex" }}>
 
-
       <NavLink to="/auth/signup">
         <Button
           fontSize="sm"
@@ -156,6 +155,22 @@ export default function AuthNavbar(props) {
           />
         </Box>
         {linksAuth}
+        {/* 
+          <Button
+            bg={bgButton}
+            color={colorButton}
+            fontSize="xs"
+            variant="no-hover"
+            borderRadius="35px"
+            px="30px"
+            display={{
+              sm: "none",
+              lg: "flex",
+            }}
+          >
+            Free Download
+          </Button>
+        </Link> */}
       </Flex>
     </Flex>
   );
