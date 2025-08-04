@@ -1,8 +1,8 @@
 {
-	"name": "purity-dashboard-react",
+	"name": "bright-smhos-financial-management",
 	"version": "2.0.2",
 	"private": true,
-	"homepage": "https://demos.creative-tim.com/purity-ui-dashboard/#/",
+	"homepage": "",
 	"dependencies": {
 		"@chakra-ui/icons": "^1.1.5",
 		"@chakra-ui/react": "1.8.8",
@@ -46,7 +46,7 @@
 	},
 "scripts": {
   "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
-  "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider CI=false PUBLIC_URL=/ react-scripts build && gulp licenses",
+  "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider CI=false PUBLIC_URL=/ react-scripts build",
   "test": "react-scripts test --env=jsdom",
   "eject": "react-scripts eject",
   "deploy": "npm run build",
