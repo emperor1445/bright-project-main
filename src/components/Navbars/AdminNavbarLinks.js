@@ -101,8 +101,12 @@ export default function HeaderLinks(props) {
               ? <ProfileIcon color={navbarIcon} w="22px" h="22px" me="0px" />
               : ""
           }
+            onClick={() => {
+    // trigger seed demo on dashboard
+    window.dispatchEvent(new CustomEvent("seed-demo"));
+    window.location.href = "/#/admin/dashboard";}}
         >
-          <Text display={{ sm: "none", md: "flex" }}>Log in to Wallet</Text>
+          <Text display={{ sm: "none", md: "flex" }}>Load demo data</Text>
         </Button>
       </NavLink>
 
@@ -125,40 +129,7 @@ export default function HeaderLinks(props) {
       />
 
       <Menu>
-        <MenuButton>
-          <BellIcon color={navbarIcon} w="18px" h="18px" />
-        </MenuButton>
-        <MenuList p="16px 8px">
-          <Flex flexDirection="column">
-            <MenuItem borderRadius="8px" mb="10px">
-              <ItemContent
-                time="Just now"
-                info="Incoming transfer"
-                boldInfo="₦200,000 received"
-                aName="Bank Transfer"
-                aSrc={avatar13}
-              />
-            </MenuItem>
-            <MenuItem borderRadius="8px" mb="10px">
-              <ItemContent
-                time="1 hour ago"
-                info="Wallet balance updated"
-                boldInfo="₦500,000 credited"
-                aName="System"
-                aSrc={avatar12}
-              />
-            </MenuItem>
-            <MenuItem borderRadius="8px">
-              <ItemContent
-                time="Yesterday"
-                info="Withdrawal to bank"
-                boldInfo="₦50,000 sent"
-                aName="GTBank"
-                aSrc={avatar11}
-              />
-            </MenuItem>
-          </Flex>
-        </MenuList>
+  
       </Menu>
     </Flex>
   );

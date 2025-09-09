@@ -1,39 +1,45 @@
-
+import React from "react";
 import {
-    Box,
-    Button, Flex,
-    Link,
-    Stack,
-    Text,
-    useColorModeValue
+  Box,
+  Button,
+  Flex,
+  Link,
+  Stack,
+  Text,
+  useColorModeValue,
+  Icon,
 } from "@chakra-ui/react";
 import IconBox from "components/Icons/IconBox";
 import { CreativeTimLogo } from "components/Icons/Icons";
 import { Separator } from "components/Separator/Separator";
 import { SidebarHelp } from "components/Sidebar/SidebarHelp";
-import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 const SidebarContent = ({ logoText, routes }) => {
-
-  let location = useLocation();
+  const location = useLocation();
   const [state, setState] = React.useState({});
+
+  // ✅ Hooks called at top-level only
+  const activeBg = useColorModeValue("white", "gray.700");
+  const inactiveBg = useColorModeValue("white", "gray.700"); // keep original intent (adjust if needed)
+  const activeColor = useColorModeValue("gray.700", "white");
+  const inactiveColor = useColorModeValue("gray.400", "gray.400");
+
   const activeRoute = (routeName) => {
     return location.pathname === routeName ? "active" : "";
   };
-  const createLinks = (routes) => {
-    const activeBg = useColorModeValue("white", "gray.700");
-    const inactiveBg = useColorModeValue("white", "gray.700");
-    const activeColor = useColorModeValue("gray.700", "white");
-    const inactiveColor = useColorModeValue("gray.400", "gray.400");
 
-    return routes.map((prop, key) => {
-      if (prop.redirect) {
-        return null;
-      }
+  // helper uses values from closure (no hooks inside)
+  const createLinks = (routesArr) => {
+    return routesArr.map((prop) => {
+      if (prop.redirect) return null;
+
+      // category (group)
       if (prop.category) {
-        var st = {};
+        // toggle state for collapse (existing behaviour)
+        const st = {};
         st[prop["state"]] = !state[prop.state];
+
         return (
           <div key={prop.name}>
             <Text
@@ -49,17 +55,20 @@ const SidebarContent = ({ logoText, routes }) => {
               }}
               py="12px"
             >
-              {document.documentElement.dir === "rtl"
-                ? prop.rtlName
-                : prop.name}
+              {document.documentElement.dir === "rtl" ? prop.rtlName : prop.name}
             </Text>
             {createLinks(prop.views)}
           </div>
         );
       }
+
+      // normal link item
+      const to = prop.layout + prop.path;
+      const isActive = activeRoute(to) === "active";
+
       return (
-        <NavLink to={prop.layout + prop.path} key={prop.name}>
-          {activeRoute(prop.layout + prop.path) === "active" ? (
+        <NavLink to={to} key={prop.name}>
+          {isActive ? (
             <Button
               boxSize="initial"
               justifyContent="flex-start"
@@ -77,7 +86,7 @@ const SidebarContent = ({ logoText, routes }) => {
               }}
               py="12px"
               borderRadius="15px"
-              _hover="none"
+              _hover={{}} // disable hover style
               w="100%"
               _active={{
                 bg: "inherit",
@@ -90,22 +99,14 @@ const SidebarContent = ({ logoText, routes }) => {
             >
               <Flex>
                 {typeof prop.icon === "string" ? (
-                  <Icon>{prop.icon}</Icon>
+                  <Text mr="12px" color={activeColor}>{prop.icon}</Text>
                 ) : (
-                  <IconBox
-                    bg="teal.300"
-                    color="white"
-                    h="30px"
-                    w="30px"
-                    me="12px"
-                  >
+                  <IconBox bg="teal.300" color="white" h="30px" w="30px" me="12px">
                     {prop.icon}
                   </IconBox>
                 )}
                 <Text color={activeColor} my="auto" fontSize="sm">
-                  {document.documentElement.dir === "rtl"
-                    ? prop.rtlName
-                    : prop.name}
+                  {document.documentElement.dir === "rtl" ? prop.rtlName : prop.name}
                 </Text>
               </Flex>
             </Button>
@@ -127,7 +128,7 @@ const SidebarContent = ({ logoText, routes }) => {
                 xl: "16px",
               }}
               borderRadius="15px"
-              _hover="none"
+              _hover={{}} // disable hover style
               w="100%"
               _active={{
                 bg: "inherit",
@@ -140,22 +141,14 @@ const SidebarContent = ({ logoText, routes }) => {
             >
               <Flex>
                 {typeof prop.icon === "string" ? (
-                  <Icon>{prop.icon}</Icon>
+                  <Text mr="12px" color={inactiveColor}>{prop.icon}</Text>
                 ) : (
-                  <IconBox
-                    bg={inactiveBg}
-                    color="teal.300"
-                    h="30px"
-                    w="30px"
-                    me="12px"
-                  >
+                  <IconBox bg={inactiveBg} color="teal.300" h="30px" w="30px" me="12px">
                     {prop.icon}
                   </IconBox>
                 )}
                 <Text color={inactiveColor} my="auto" fontSize="sm">
-                  {document.documentElement.dir === "rtl"
-                    ? prop.rtlName
-                    : prop.name}
+                  {document.documentElement.dir === "rtl" ? prop.rtlName : prop.name}
                 </Text>
               </Flex>
             </Button>
@@ -165,35 +158,37 @@ const SidebarContent = ({ logoText, routes }) => {
     });
   };
 
-    const links = <>{createLinks(routes)}</>;
+  const links = <>{createLinks(routes || [])}</>;
 
   return (
     <>
-        <Box pt={"25px"} mb="12px">
-      <Link
-        href={`${process.env.PUBLIC_URL}/#/`}
-        target="_blank"
-        display="flex"
-        lineHeight="100%"
-        mb="30px"
-        fontWeight="bold"
-        justifyContent="center"
-        alignItems="center"
-        fontSize="11px"
-      >
-        <CreativeTimLogo w="32px" h="32px" me="10px" />
-        <Text fontSize="sm" mt="3px">
-          {logoText}
-        </Text>
-      </Link>
-      <Separator></Separator>
-    </Box>
-          <Stack direction="column" mb="40px">
-            <Box>{links}</Box>
-          </Stack>
-          <SidebarHelp />
-    </>
-  )
-}
+      <Box pt={"25px"} mb="12px">
+        <Link
+          href={`${process.env.PUBLIC_URL || "/" }#/`}
+          target="_blank"
+          display="flex"
+          lineHeight="100%"
+          mb="30px"
+          fontWeight="bold"
+          justifyContent="center"
+          alignItems="center"
+          fontSize="11px"
+        >
+          <CreativeTimLogo w="32px" h="32px" me="10px" />
+          <Text fontSize="sm" mt="3px">
+            {logoText}
+          </Text>
+        </Link>
+        <Separator />
+      </Box>
 
-export default SidebarContent
+      <Stack direction="column" mb="40px">
+        <Box>{links}</Box>
+      </Stack>
+
+      <SidebarHelp />
+    </>
+  );
+};
+
+export default SidebarContent;

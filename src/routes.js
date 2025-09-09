@@ -1,3 +1,5 @@
+// src/routes.js
+
 // import
 import Dashboard from "views/Dashboard/Dashboard";
 import Tables from "views/Dashboard/Tables";
@@ -6,6 +8,9 @@ import Profile from "views/Dashboard/Profile";
 import SignIn from "views/Auth/SignIn.js";
 import SignUp from "views/Auth/SignUp.js";
 import ProtectedRoute from "ProtectedRoute";
+
+// <-- NEW: import the Finance dashboard component
+import FinanceDashboard from "components/FinanceDashboard";
 
 import {
   HomeIcon,
@@ -27,18 +32,12 @@ var dashRoutes = [
   },
   {
     path: "/tables",
-    name: "Tables",
+    name: "Reports",
     icon: <StatsIcon color="inherit" />,
     component: Tables,
     layout: "/admin",
   },
-  {
-    path: "/billing",
-    name: "Billing",
-    icon: <CreditIcon color="inherit" />,
-    component: Billing,
-    layout: "/admin",
-  },
+
 
   {
     name: "ACCOUNT PAGES",

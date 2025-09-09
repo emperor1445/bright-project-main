@@ -1,3 +1,5 @@
+// src/layouts/Admin.js
+
 // Chakra imports
 import { ChakraProvider, Portal, useDisclosure } from '@chakra-ui/react';
 import Configurator from '../components/Configurator/Configurator';
@@ -19,6 +21,10 @@ import FixedPlugin from '../components/FixedPlugin/FixedPlugin';
 import MainPanel from '../components/Layout/MainPanel';
 import PanelContainer from '../components/Layout/PanelContainer';
 import PanelContent from '../components/Layout/PanelContent';
+
+// <-- NEW: Finance Dashboard component
+import FinanceDashboard from 'components/FinanceDashboard';
+
 export default function Dashboard(props) {
 	const { ...rest } = props;
 	// states and functions
@@ -125,6 +131,15 @@ export default function Dashboard(props) {
 						<PanelContainer>
 							<Switch>
 								{getRoutes(routes)}
+
+                {/* NEW: Protected route for Finance Dashboard */}
+                <ProtectedRoute
+                  path="/admin/finance"
+                  component={(props) => (
+                    <FinanceDashboard userId={window.APP_USER_ID || 'demoUser'} {...props} />
+                  )}
+                />
+
 								<Redirect from='/admin' to='/admin/dashboard' />
 							</Switch>
 						</PanelContainer>
