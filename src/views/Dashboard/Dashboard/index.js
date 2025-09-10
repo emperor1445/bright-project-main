@@ -19,11 +19,7 @@ import {
   Td,
   TableContainer,
   Stack,
-  Progress,
-  IconButton,
-  HStack,
 } from "@chakra-ui/react";
-import { CloseIcon } from "@chakra-ui/icons";
 
 // firebase (adjust this relative path if your firebase.js sits elsewhere)
 import { db } from "firebase";
@@ -82,9 +78,6 @@ export default function Dashboard() {
   const [budgets, setBudgets] = useState([]); // array of { id, categoryId, limit, createdAt }
   const [budgetUtilPercent, setBudgetUtilPercent] = useState("N/A");
   const [budgetAlerts, setBudgetAlerts] = useState([]); // list of {categoryId, spent, limit}
-
-  // local UI dismiss state for alerts (client-only)
-  const [dismissedAlerts, setDismissedAlerts] = useState([]);
 
   const userId = window.APP_USER_ID || "demoUser";
 
@@ -302,14 +295,6 @@ export default function Dashboard() {
   // formatted helpers
   const fmt = (v) => `₦${Number(v).toLocaleString()}`;
 
-  // helper to dismiss an alert locally
-  const dismissAlert = (categoryId) => {
-    setDismissedAlerts((s) => [...s, categoryId]);
-  };
-
-  // visible alerts (filter dismissed)
-  const visibleAlerts = budgetAlerts.filter(a => !dismissedAlerts.includes(a.categoryId));
-
   return (
     <Flex flexDirection="column" pt={{ base: "120px", md: "75px" }}>
       {/* Top cards */}
@@ -336,7 +321,6 @@ export default function Dashboard() {
           </Stack>
         </Box>
 
-        {/* kept compact: no alerts inside this box */}
         <Box p="18px" bg="rgba(255,255,255,0.02)" borderRadius="12px">
           <Stack spacing={1} direction="row" align="center" justify="space-between">
             <Box>
@@ -348,43 +332,21 @@ export default function Dashboard() {
               <AddBudget userId={userId} onSaved={() => { /* subscription updates UI */ }} />
             </Box>
           </Stack>
+
+          {/* show alerts if there are any */}
+          {budgetAlerts.length > 0 && (
+            <Box mt={3} p={3} bg="rgba(255,0,0,0.06)" borderRadius="8px">
+              <Text fontSize="sm" color="red.300" fontWeight="600">Budget alerts</Text>
+              {budgetAlerts.map(a => {
+                const catName = (categories[a.categoryId] && categories[a.categoryId].name) || a.categoryId || "Uncategorized";
+                return (
+                  <Text key={a.categoryId} fontSize="sm" color="red.200">{catName}: ₦{Number(a.spent).toLocaleString()} of ₦{Number(a.limit).toLocaleString()}</Text>
+                );
+              })}
+            </Box>
+          )}
         </Box>
       </SimpleGrid>
-
-      {/* NEW: Alerts panel (separate so top cards don't stretch) */}
-      {visibleAlerts.length > 0 && (
-        <Box mb={6} p={4} borderRadius="10px" bg="rgba(255,0,0,0.04)">
-          <HStack justify="space-between" align="center" mb={3}>
-            <Heading size="sm" color="red.300">Budget alerts</Heading>
-            <Button size="sm" variant="ghost" onClick={() => setDismissedAlerts(visibleAlerts.map(a => a.categoryId))}>Dismiss all</Button>
-          </HStack>
-
-          <Stack spacing={2}>
-            {visibleAlerts.map(a => {
-              const catName = (categories[a.categoryId] && categories[a.categoryId].name) || a.categoryId || "Uncategorized";
-              return (
-                <Box key={a.categoryId} p={3} bg="rgba(255,0,0,0.02)" borderRadius="8px" display="flex" alignItems="center" justifyContent="space-between">
-                  <Box>
-                    <Text fontSize="sm" color="red.200" fontWeight="600">{catName}</Text>
-                    <Text fontSize="sm" color="red.100">₦{Number(a.spent).toLocaleString()} of ₦{Number(a.limit).toLocaleString()}</Text>
-                  </Box>
-
-                  <HStack spacing={3}>
-                    <Text fontSize="sm" color="red.200">{Math.round((a.spent / a.limit) * 100)}%</Text>
-                    <IconButton
-                      aria-label="Dismiss alert"
-                      size="sm"
-                      icon={<CloseIcon />}
-                      onClick={() => dismissAlert(a.categoryId)}
-                      variant="ghost"
-                    />
-                  </HStack>
-                </Box>
-              );
-            })}
-          </Stack>
-        </Box>
-      )}
 
       {/* Chart and categories */}
       <Grid templateColumns={{ md: "1fr", lg: "1.8fr 1.2fr" }} gap="24px" mb="24px">

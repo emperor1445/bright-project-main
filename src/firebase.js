@@ -1,19 +1,18 @@
-// src/firebase.js
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore"; // 👈 add Firestore
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA8sz0G5PntqfOoD_QblA94tnHkx7FWD30",
-  authDomain: "financesystem-c5f03.firebaseapp.com",
-  projectId: "financesystem-c5f03",
-  storageBucket: "financesystem-c5f03.firebasestorage.app",
-  messagingSenderId: "938656424927",
-  appId: "1:938656424927:web:78e234d008b1a66e905a6a"
+  apiKey: "AIzaSyAZtE01ZmUtVyd9s51KwxxDPzcnRJFhDJE",
+  authDomain: "finance-603f8.firebaseapp.com",
+  projectId: "finance-603f8",
+  storageBucket: "finance-603f8.firebasestorage.app",
+  messagingSenderId: "211886810435",
+  appId: "1:211886810435:web:4845c13ef2f22860d9fbf6",
+  measurementId: "G-1N56ECQ6XF"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-// Export Firestore instance
+const analytics = getAnalytics(app);
 export const db = getFirestore(app);
