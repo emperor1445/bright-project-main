@@ -32,18 +32,12 @@ var dashRoutes = [
   },
   {
     path: "/tables",
-    name: "Reports",
+    name: "Report",
     icon: <StatsIcon color="inherit" />,
     component: Tables,
     layout: "/admin",
   },
 
-
-  {
-    name: "ACCOUNT PAGES",
-    category: "account",
-    state: "pageCollapse",
-    views: [
       {
         path: "/profile",
         name: "Profile",
@@ -52,6 +46,13 @@ var dashRoutes = [
         component: Profile,
         layout: "/admin",
       },
+      
+  {
+    name: "ACCOUNT PAGES",
+    category: "account",
+    state: "pageCollapse",
+    views: [
+
       {
         path: "/signin",
         name: "Sign In",

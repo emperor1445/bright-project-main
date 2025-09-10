@@ -68,7 +68,7 @@ const ProfileInformation = ({
             </Text>
             <Flex>
               <Link
-                href='https://www.facebook.com/profile.php?id=100080638459192&mibextid=ZbWKwL'
+                href='#'
                 color='teal.300'
                 fontSize='lg'
                 me='10px'
@@ -76,7 +76,7 @@ const ProfileInformation = ({
                 <Icon as={FaFacebook} />
               </Link>
               <Link
-                href='https://www.instagram.com/collinsbright567/profilecard/?igsh=MXY1c2Mxdjlsdm9lNw=='
+                href='#'
                 color='teal.300'
                 fontSize='lg'
                 me='10px'
@@ -84,7 +84,7 @@ const ProfileInformation = ({
                 <Icon as={FaInstagram} />
               </Link>
               <Link
-                href='https://x.com/collins_br94207?t=7hDPMyZMFqbf-pf48Ps1PA&s=09'
+                href='#'
                 color='teal.300'
                 fontSize='lg'
                 me='10px'
